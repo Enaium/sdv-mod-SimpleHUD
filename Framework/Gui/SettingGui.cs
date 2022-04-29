@@ -31,7 +31,7 @@ namespace SimpleHUD.Framework.Gui
                 }
             };
             AddElement(title);
-            AddElement(new Button(Get("setting.textColor"), "setting.textColor")
+            AddElement(new Button(Get("setting.textColor"), Get("setting.textColor"))
             {
                 OnLeftClicked = () =>
                 {
