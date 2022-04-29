@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using EnaiumToolKit.Framework.Utils;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using SimpleHUD.Framework;
 using SimpleHUD.Framework.Gui;
 using StardewModdingAPI;
@@ -14,7 +14,7 @@ namespace SimpleHUD
     {
         public static Config Config;
         private static ModEntry _instance;
-
+        
         public ModEntry()
         {
             _instance = this;
@@ -73,6 +73,8 @@ namespace SimpleHUD
 
                 list.Add(Config.Title);
                 list.Add("");
+
+                list.Add($"FPS:{Math.Round((1 / Game1.currentGameTime.ElapsedGameTime.TotalSeconds))}");
                 list.Add($"Location:{Game1.currentLocation.Name}");
                 list.Add(
                     $"TileX:{Game1.player.getTileX()}/TileY:{Game1.player.getTileY()}/StandingX:{Game1.player.getStandingX()}/StandingY:{Game1.player.getStandingY()}");
@@ -90,7 +92,8 @@ namespace SimpleHUD
                 var index = 0;
                 foreach (var s in list)
                 {
-                    args.SpriteBatch.DrawString(Game1.dialogueFont, s, new Vector2(0, index), ColorUtils.Instance.Get(Config.TextColor));
+                    args.SpriteBatch.DrawString(Game1.dialogueFont, s, new Vector2(0, index),
+                        ColorUtils.Instance.Get(Config.TextColor));
                     index += 35;
                 }
             };
